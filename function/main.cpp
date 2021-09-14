@@ -13,11 +13,22 @@ public:
     double Apply(double source_value) const {
         if (operation == '+')
             return source_value + value;
-        else
+        else if (operation == '-')
             return source_value - value;
+        else if (operation == '*')
+            return source_value * value;
+        else
+            return source_value / value;
     }
     void Invert() {
-        operation = operation == '+' ? '-' : '+';
+        if (operation == '+')
+            operation = '-';
+        else if (operation == '-')
+            operation = '+';
+        else if (operation == '*')
+            operation = '/';
+        else
+            operation = '*';
     }
 private:
     char operation;
