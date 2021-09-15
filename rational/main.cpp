@@ -34,3 +34,22 @@ private:
     int numerator = 0;
     int denominator = 1;
 };
+
+bool operator==(const Rational& lhs, const Rational& rhs) {
+    return lhs.Numerator() == rhs.Numerator() && lhs.Denominator() == rhs.Denominator();
+}
+
+Rational operator+(const Rational& lhs, const Rational& rhs) {
+    int numerator = lhs.Numerator() * rhs.Denominator() + lhs.Denominator() * rhs.Numerator();
+    int denominator = lhs.Denominator() * rhs.Denominator();
+
+    return {numerator, denominator};
+}
+
+Rational operator-(const Rational& lhs, const Rational& rhs) {
+    int numerator = lhs.Numerator() * rhs.Denominator() - lhs.Denominator() * rhs.Numerator();
+    int denominator = lhs.Denominator() * rhs.Denominator();
+
+    return {numerator, denominator};
+}
+
