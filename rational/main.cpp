@@ -16,7 +16,7 @@ public:
 
     Rational(int p, int q) {
         if (q == 0)
-            throw invalid_argument("");
+            throw invalid_argument("Invalid argument");
 
         if (q < 0) {
             p *= -1;
@@ -79,7 +79,7 @@ Rational operator/(const Rational& lhs, const Rational& rhs) {
     int denominator = lhs.Denominator() * rhs.Numerator();
 
     if (denominator == 0)
-        throw domain_error("");
+        throw domain_error("Division by zero");
 
     return {numerator, denominator};
 }
@@ -101,4 +101,24 @@ istream& operator>>(istream& stream, Rational& rational) {
 ostream& operator<<(ostream& stream, const Rational& rational) {
     stream << rational.Numerator() << '/' << rational.Denominator();
     return stream;
+}
+
+int main() {
+    try {
+        char operation;
+        Rational a, b;
+        cin >> a >> operation >> b;
+
+        if (operation == '+')
+            cout << a + b;
+        else if (operation == '-')
+            cout << a - b;
+        else if (operation == '*')
+            cout << a * b;
+        else if (operation == '/')
+            cout << a / b;
+    }
+    catch(const exception& exc) {
+        cout << exc.what();
+    }
 }
