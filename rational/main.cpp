@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <numeric>
 
 using namespace std;
@@ -65,5 +66,24 @@ Rational operator/(const Rational& lhs, const Rational& rhs) {
     int denominator = lhs.Denominator() * rhs.Numerator();
 
     return {numerator, denominator};
+}
+
+istream& operator>>(istream& stream, Rational& rational) {
+    int numerator, denominator;
+
+    if (stream >> numerator) {
+        char dlm;
+        stream >> dlm;
+
+        if (dlm == '/' && stream >> denominator)
+            rational = {numerator, denominator};
+    }
+
+    return stream;
+}
+
+ostream& operator<<(ostream& stream, const Rational& rational) {
+    stream << rational.Numerator() << '/' << rational.Denominator();
+    return stream;
 }
 
