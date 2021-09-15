@@ -53,3 +53,17 @@ Rational operator-(const Rational& lhs, const Rational& rhs) {
     return {numerator, denominator};
 }
 
+Rational operator*(const Rational& lhs, const Rational& rhs) {
+    int numerator = lhs.Numerator() * rhs.Numerator();
+    int denominator = lhs.Denominator() * rhs.Denominator();
+
+    return {numerator, denominator};
+}
+
+Rational operator/(const Rational& lhs, const Rational& rhs) {
+    int numerator = lhs.Numerator() * rhs.Denominator();
+    int denominator = lhs.Denominator() * rhs.Numerator();
+
+    return {numerator, denominator};
+}
+
