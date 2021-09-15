@@ -9,9 +9,15 @@ using namespace std;
 
 class Rational {
 public:
-    Rational() {}
+    Rational() {
+        numerator = 0;
+        denominator = 1;
+    }
 
     Rational(int p, int q) {
+        if (q == 0)
+            throw invalid_argument("");
+
         if (q < 0) {
             p *= -1;
             q *= -1;
@@ -35,8 +41,8 @@ public:
     }
 
 private:
-    int numerator = 0;
-    int denominator = 1;
+    int numerator;
+    int denominator;
 };
 
 bool operator==(const Rational& lhs, const Rational& rhs) {
@@ -72,6 +78,9 @@ Rational operator/(const Rational& lhs, const Rational& rhs) {
     int numerator = lhs.Numerator() * rhs.Denominator();
     int denominator = lhs.Denominator() * rhs.Numerator();
 
+    if (denominator == 0)
+        throw domain_error("");
+
     return {numerator, denominator};
 }
 
@@ -93,4 +102,3 @@ ostream& operator<<(ostream& stream, const Rational& rational) {
     stream << rational.Numerator() << '/' << rational.Denominator();
     return stream;
 }
-
