@@ -1,6 +1,9 @@
 #include <iostream>
 #include <sstream>
 #include <numeric>
+#include <set>
+#include <map>
+#include <vector>
 
 using namespace std;
 
@@ -38,6 +41,10 @@ private:
 
 bool operator==(const Rational& lhs, const Rational& rhs) {
     return lhs.Numerator() == rhs.Numerator() && lhs.Denominator() == rhs.Denominator();
+}
+
+bool operator<(const Rational& lhs, const Rational& rhs) {
+    return lhs.Numerator() * rhs.Denominator() < lhs.Denominator() * rhs.Numerator();
 }
 
 Rational operator+(const Rational& lhs, const Rational& rhs) {
